@@ -1,0 +1,25 @@
+
+<main *ngIf="timer$ | async as timer">
+  <div class="timer">
+    <ng-container *ngIf="!timer.isTimeOver">
+      <input [(ngModel)]="timer.hours" class="timer__hours" type="number" min="0" max="48" value="00" readonly>
+      <p>:</p>
+      <input [(ngModel)]="timer.minutes" class="timer__minutes" type="number" min="0" max="59" value="00" readonly>
+      <p>:</p>
+      <input [(ngModel)]="timer.seconds" class="timer__seconds" type="number" min="0" max="59" value="00" readonly>
+    </ng-container>
+
+    <p *ngIf="timer.isTimeOver">Time Over</p>
+  </div>
+  <div class="start-stop start" *ngIf="!timer.active && !timer.isTimeOver" (click)="startTimer()">
+    <p>start</p>
+  </div>
+  <div class="start-stop stop" *ngIf="timer.active && !timer.isTimeOver" (click)="stopTimer()">
+    <p>stop</p>
+  </div>
+
+  <div class="timeover" *ngIf="timer.isTimeOver" (click)="stopTimer()">
+    
+  </div>
+
+</main>
